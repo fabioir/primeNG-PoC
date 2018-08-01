@@ -1,5 +1,5 @@
 <p>
-  table works!
+    table works!
 </p>
 <button (click)="launch()">Launch</button>
 <p-table [value]="rules">
@@ -12,8 +12,15 @@
     </ng-template>
     <ng-template pTemplate="body" let-rule>
         <tr>
-            <td *ngFor="let col of cols">
-                    {{rule[col.field]}}
+            <td *ngFor="let col of cols" pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input type="text" [(ngModel)]="rule[col.field]">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rule[col.field]}}
+                    </ng-template>
+                </p-cellEditor>
             </td>
         </tr>
     </ng-template>
